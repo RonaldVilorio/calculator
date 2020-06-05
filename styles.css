@@ -8,9 +8,9 @@ body {
   justify-content: center;
 }
 .wholeCalculator {
-  background-color:rgb(50, 43, 76);
+  background-color: rgb(50, 43, 76);
   width: 50%;
-  height: 500px;
+  height: 550px;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
@@ -23,8 +23,24 @@ body {
   height: 60px;
   margin-top: 20px;
 }
-.TurnOnDiv{
+.turnOnDiv {
+  background-color: rgb(50, 43, 76);;
   width: 80%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+}
+.onButton {
+  border-radius: 10%;
+  background-color: white;
+  color: black;
+  width: 20%;
+  height: 100%;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .numbersandOperations {
   background-color: violet;
