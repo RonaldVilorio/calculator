@@ -8,19 +8,23 @@ body {
   justify-content: center;
 }
 .wholeCalculator {
-  background-color: black;
+  background-color:rgb(50, 43, 76);
   width: 50%;
   height: 500px;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10%;
 }
 .display {
   background-color: cyan;
   width: 80%;
-  height: 50px;
+  height: 60px;
   margin-top: 20px;
+}
+.TurnOnDiv{
+  width: 80%;
 }
 .numbersandOperations {
   background-color: violet;
@@ -38,7 +42,7 @@ body {
   flex-direction: column;
 }
 .operationsContainer {
-  background-color:khaki;
+  background-color: purple;
   width: 20%;
   margin: 5px;
   display: flex;
@@ -52,14 +56,26 @@ body {
 }
 .number {
   background-color: white;
-  color: red;
+  color: black;
   width: 50%;
   height: 80%;
-  margin: 5px;
+  margin: 10px;
+  border-radius: 25%;
+  font-size: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .operation {
-  background-color:lightsalmon;
+  background-color: white;
   width: 80%;
   height: 25%;
-  margin: 5px;
+  margin: 10px;
+  border-radius: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
 }
