@@ -25,23 +25,44 @@ function handleOperationClick(e) {
   displayOperation = document.querySelector("#displayText");
   // ++ is a no, there has to be content first, no 2 ++ inside string
   if (displayOperation.textContent.length >= 1) {
-    displayOperation.textContent = displayOperation.textContent + operation;
+    displayOperation.textContent =
+      displayOperation.textContent + " " + operation + " ";
   } else {
     null;
   }
 }
-document.querySelector("#onButton").addEventListener("click", handleToggle);
+function handleCalc() {
+  let string = document.querySelector("#displayText").textContent;
+  let arr = string.split(" ");
+  let operation = arr[1];
+  let num1 = arr[0] * 1;
+  let num2 = arr[2] * 1;
 
+  let newString = "";
+  //   copy and paste the symbol from the console into the if statements
+  if (operation === "×") {
+    newString = newString + num1 * num2;
+  } else if (operation === "+") {
+    newString = newString + (num1 + num2);
+  } else if (operation === "−") {
+    newString = newString + (num1 - num2);
+  } else {
+    newString = newString + num1 / num2;
+  }
+  let displayText = document.querySelector("#displayText");
+  displayText.textContent = newString;
+}
+document.querySelector("#onButton").addEventListener("click", handleToggle);
+document.querySelector("#calcButton").addEventListener("click", handleCalc);
 let numbers = document.querySelectorAll(".number");
 for (number of numbers) {
   number.addEventListener("click", handleNumClick);
 }
-// make sure to differinate the operations button to the number buttons by class
-// the equal button will be special, give it an id
+
 let operations = document.querySelectorAll(".operation");
 for (operation of operations) {
   operation.addEventListener("click", handleOperationClick);
 }
 
 // the + will be the break between num1 and num2
-// or capture the whole string and send it to function =
+// capture the whole string and send it to function =
