@@ -1,17 +1,17 @@
 function handleToggle() {
-  let displayText = document.querySelector("#displayText").textContent;
+  let displayText = document.querySelector("#displayBox").textContent;
   //   if turned On and has content then turn off
   if (displayText.length > 0) {
-    document.querySelector("#displayText").textContent = "";
+    document.querySelector("#displayBox").textContent = "";
     // if turned off and no content then turn on with "0"
   } else if (displayText.length === 0) {
-    document.querySelector("#displayText").textContent = "0";
+    document.querySelector("#displayBox").textContent = "0";
   }
 }
 function handleNumClick(e) {
   // check to see if display has numebrs already
   let userNum = e.target.textContent;
-  let displayNumber = document.querySelector("#displayText");
+  let displayNumber = document.querySelector("#displayBox");
   if (displayNumber.textContent === "0") {
     displayNumber.textContent = userNum;
   } else if (displayNumber.textContent.length >= 1) {
@@ -22,7 +22,7 @@ function handleNumClick(e) {
 }
 function handleOperationClick(e) {
   let operation = e.target.textContent;
-  displayOperation = document.querySelector("#displayText");
+  displayOperation = document.querySelector("#displayBox");
   // ++ is a no, there has to be content first, no 2 ++ inside string
   if (displayOperation.textContent.length >= 1) {
     displayOperation.textContent =
@@ -32,7 +32,7 @@ function handleOperationClick(e) {
   }
 }
 function handleCalc() {
-  let string = document.querySelector("#displayText").textContent;
+  let string = document.querySelector("#displayBox").textContent;
   let arr = string.split(" ");
   let operation = arr[1];
   let num1 = arr[0] * 1;
@@ -49,7 +49,7 @@ function handleCalc() {
   } else {
     newString = newString + num1 / num2;
   }
-  let displayText = document.querySelector("#displayText");
+  let displayText = document.querySelector("#displayBox");
   displayText.textContent = newString;
 }
 document.querySelector("#onButton").addEventListener("click", handleToggle);
