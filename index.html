@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="calculator.js"></script>
   </head>
   <body>
     <div class="wholeCalculator">
@@ -13,14 +12,14 @@
         <div id="displayNumber"></div>
       </div>
       <div class="turnOnDiv">
-        <div id="onButton" onClick="toggleButton()">ON/AC</div>
+        <div id="onButton">ON/AC</div>
       </div>
       <div class="numbersandOperations">
         <div class="numbersContainer">
           <div class="row">
-            <div class="number">7</div>
-            <div class="number">8</div>
-            <div class="number">9</div>
+            <button type="button" class="number">7</button>
+            <button type="button" class="number">8</button>
+            <button type="button" class="number">9</button>
           </div>
           <div class="row">
             <div class="number">4</div>
@@ -47,4 +46,5 @@
       </div>
     </div>
   </body>
+  <script src="calculator.js"></script>
 </html>

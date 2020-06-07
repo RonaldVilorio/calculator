@@ -31,9 +31,6 @@ body {
   display: flex;
   justify-content: flex-start;
 }
-.toggleDisplay{
-  display: none;
-}
 .turnOnDiv {
   background-color: rgb(50, 43, 76);
   width: 80%;
