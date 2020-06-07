@@ -8,13 +8,15 @@ function handleToggle() {
     document.querySelector("#displayNumber").textContent = "0";
   }
 }
-// function handleNumClick(e) {
-//   let number = e.target.textContent;
-//   document.querySelector("#displayNumber").textContent = number;
-// }
+function handleNumClick(e) {
+  let number = e.target.textContent;
+  document.querySelector("#displayNumber").textContent = number;
+}
 document.querySelector("#onButton").addEventListener("click", handleToggle);
 
-// let buttons = document.querySelectorAll("button");
-// for (button in buttons) {
-//   button.addEventListener("click",handleNumClick)
-// }
+let buttons = document.querySelectorAll("button");
+for (button of buttons) {
+  button.addEventListener("click", handleNumClick);
+}
+
+// the + will be the break between num1 and num2
