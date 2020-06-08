@@ -33,7 +33,9 @@ function handleNumClick(e) {
   if (onTracker === 0) {
     null;
   } else {
-    if (displayNumber.textContent.length >= 1) {
+    if (displayNumber.textContent === "0") {
+      displayNumber.textContent = userNum;
+    } else if (displayNumber.textContent.length >= 1) {
       displayNumber.textContent = displayNumber.textContent + userNum;
     } else {
       displayNumber.textContent = userNum;
@@ -49,7 +51,8 @@ function handleOperationClick(e) {
     displayOperation.textContent.indexOf(operation) === -1 &&
     displayOperation.textContent.indexOf("×") === -1 &&
     displayOperation.textContent.indexOf("+") === -1 &&
-    displayOperation.textContent.indexOf("−") === -1
+    displayOperation.textContent.indexOf("−") === -1 &&
+    displayOperation.textContent.indexOf("÷") === -1
   ) {
     displayOperation.textContent =
       displayOperation.textContent + " " + operation + " ";
@@ -75,7 +78,12 @@ function handleCalc() {
     newString = newString + num1 / num2;
   }
   let displayBox = document.querySelector("#displayBox");
-  displayBox.textContent = newString;
+  if (arr.length === 3) {
+    displayBox.textContent = newString;
+  } else {
+    null;
+  }
+
   calcTracker++;
 }
 document.querySelector("#onButton").addEventListener("click", handleToggle);
