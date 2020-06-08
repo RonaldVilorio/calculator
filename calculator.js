@@ -1,23 +1,43 @@
+let calcTracker = 0;
+let onTracker = 0;
+// when calc has been pressed
+// calcTracker --> 1
+// 0 has not clicked calculate
+// 1 has clicked calculate
+
 function handleToggle() {
-  let displayText = document.querySelector("#displayBox").textContent;
+  let textContent = document.querySelector("#displayBox").textContent;
   //   if turned On and has content then turn off
-  if (displayText.length > 0) {
+  if (textContent.length > 0) {
     document.querySelector("#displayBox").textContent = "";
+    onTracker--;
     // if turned off and no content then turn on with "0"
-  } else if (displayText.length === 0) {
+  } else if (textContent.length === 0) {
     document.querySelector("#displayBox").textContent = "0";
+    onTracker++;
   }
 }
+function reset() {
+  document.querySelector("#displayBox").textContent = "";
+}
+
 function handleNumClick(e) {
-  // check to see if display has numebrs already
+  // check to see if display has numbers already
   let userNum = e.target.textContent;
   let displayNumber = document.querySelector("#displayBox");
-  if (displayNumber.textContent === "0") {
-    displayNumber.textContent = userNum;
-  } else if (displayNumber.textContent.length >= 1) {
-    displayNumber.textContent = displayNumber.textContent + userNum;
+  if (calcTracker === 1) {
+    reset();
+    calcTracker--;
+  }
+  // if off then buttons won't work, "null"
+  if (onTracker === 0) {
+    null;
   } else {
-    displayNumber.textContent = userNum;
+    if (displayNumber.textContent.length >= 1) {
+      displayNumber.textContent = displayNumber.textContent + userNum;
+    } else {
+      displayNumber.textContent = userNum;
+    }
   }
 }
 function handleOperationClick(e) {
@@ -37,7 +57,6 @@ function handleCalc() {
   let operation = arr[1];
   let num1 = arr[0] * 1;
   let num2 = arr[2] * 1;
-
   let newString = "";
   //   copy and paste the symbol from the console into the if statements
   if (operation === "×") {
@@ -49,8 +68,9 @@ function handleCalc() {
   } else {
     newString = newString + num1 / num2;
   }
-  let displayText = document.querySelector("#displayBox");
-  displayText.textContent = newString;
+  let displayBox = document.querySelector("#displayBox");
+  displayBox.textContent = newString;
+  calcTracker++;
 }
 document.querySelector("#onButton").addEventListener("click", handleToggle);
 document.querySelector("#calcButton").addEventListener("click", handleCalc);
