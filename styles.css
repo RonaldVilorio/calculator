@@ -41,10 +41,10 @@ body {
 #onButton {
   margin-top: 4px;
   border-radius: 10%;
-  background-color: white;
+  background-color: rgb(247, 240, 240);
   color: black;
-  width: 20%;
-  height: 100%;
+  width: auto;
+  height: auto;
   font-size: 15px;
   display: flex;
   justify-content: center;
@@ -53,14 +53,14 @@ body {
   /* border: 2px solid black; */
 }
 #onButton:hover {
-  background-color: rgb(247, 240, 240);
+  background-color: white;
   /* color: white; */
   cursor: pointer;
 }
 .numbersandOperations {
   background-color: violet;
   width: 80%;
-  height: 380px;
+  height: auto;
   margin-top: 10px;
   display: flex;
   flex-direction: row;
@@ -68,6 +68,7 @@ body {
 .numbersContainer {
   background-color: purple;
   width: 80%;
+  /* height: auto; */
   margin: 5px;
   display: flex;
   flex-direction: column;
@@ -87,7 +88,7 @@ body {
   border: 2px solid black;
 }
 .number {
-  background-color: white;
+  background-color: rgb(247, 240, 240);
   color: black;
   width: 50%;
   height: 80%;
@@ -100,7 +101,7 @@ body {
   justify-content: center;
 }
 #calcButton {
-  background-color: white;
+  background-color: rgb(247, 240, 240);
   color: black;
   width: 50%;
   height: 80%;
@@ -114,11 +115,10 @@ body {
   border: 2px solid black;
 }
 #calcButton:hover {
-  background-color: rgb(247, 240, 240);
-  color: white;
+  background-color: white;
 }
 .operation {
-  background-color: white;
+  background-color: rgb(247, 240, 240);
   width: 80%;
   height: 25%;
   margin: 10px;
@@ -130,6 +130,6 @@ body {
   font-size: 50px;
 }
 button:hover {
-  background-color: rgb(247, 240, 240);
+  background-color: white;
   cursor: pointer;
 }
