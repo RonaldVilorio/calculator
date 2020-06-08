@@ -44,7 +44,13 @@ function handleOperationClick(e) {
   let operation = e.target.textContent;
   displayOperation = document.querySelector("#displayBox");
   // ++ is a no, there has to be content first, no 2 ++ inside string
-  if (displayOperation.textContent.length >= 1) {
+  if (
+    displayOperation.textContent.length >= 1 &&
+    displayOperation.textContent.indexOf(operation) === -1 &&
+    displayOperation.textContent.indexOf("×") === -1 &&
+    displayOperation.textContent.indexOf("+") === -1 &&
+    displayOperation.textContent.indexOf("−") === -1
+  ) {
     displayOperation.textContent =
       displayOperation.textContent + " " + operation + " ";
   } else {
