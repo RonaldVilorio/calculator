@@ -1,5 +1,6 @@
 let calcTracker = 0;
 let onTracker = 0;
+let dotTracker = 0;
 // when calc has been pressed
 // calcTracker --> 1
 // 0 has not clicked calculate
@@ -20,6 +21,20 @@ function handleToggle() {
 function reset() {
   document.querySelector("#displayBox").textContent = "";
 }
+function handleDotClick(e) {
+  // track the number of times that the dot function is called
+  // allow only 2 dots
+  // num can only have 1 dot
+  // num can't have a dot at the end
+  let dot = e.target.textContent;
+  let displayBox = document.querySelector("#displayBox");
+  if (dotTracker < 2) {
+    displayBox.textContent = displayBox.textContent + dot;
+    dotTracker++;
+  } else {
+    null;
+  }
+}
 
 function handleNumClick(e) {
   // check to see if display has numbers already
@@ -29,10 +44,8 @@ function handleNumClick(e) {
     reset();
     calcTracker--;
   }
-  // if off then buttons won't work, "null"
-  if (onTracker === 0) {
-    null;
-  } else {
+  // if calculator on do something
+  if (onTracker === 1) {
     if (displayNumber.textContent === "0") {
       displayNumber.textContent = userNum;
     } else if (displayNumber.textContent.length >= 1) {
@@ -40,6 +53,9 @@ function handleNumClick(e) {
     } else {
       displayNumber.textContent = userNum;
     }
+    // if off then buttons won't work, "null"
+  } else {
+    null;
   }
 }
 function handleOperationClick(e) {
@@ -85,9 +101,11 @@ function handleCalc() {
   }
 
   calcTracker++;
+  dotTracker = 0;
 }
 document.querySelector("#onButton").addEventListener("click", handleToggle);
 document.querySelector("#calcButton").addEventListener("click", handleCalc);
+document.querySelector("#dotButton").addEventListener("click", handleDotClick);
 let numbers = document.querySelectorAll(".number");
 for (number of numbers) {
   number.addEventListener("click", handleNumClick);
