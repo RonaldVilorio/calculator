@@ -1,39 +1,25 @@
 let calcTracker = 0;
-let onTracker = 0;
 let dotTracker = 0;
+// To add commas
+// (1234567.89).toLocaleString('en')
+// add a backspace button or clear button
+// take away dottracker
+// refactor code
+// can still add number after = button
+
 // when calc has been pressed
 // calcTracker --> 1
 // 0 has not clicked calculate
 // 1 has clicked calculate
-
-function handleToggle() {
-  let textContent = document.querySelector("#displayBox").textContent;
-  //   if turned On and has content then turn off
-  if (textContent.length > 0) {
-    document.querySelector("#displayBox").textContent = "";
-    onTracker--;
-    // if turned off and no content then turn on with "0"
-  } else if (textContent.length === 0) {
-    document.querySelector("#displayBox").textContent = "0";
-    onTracker++;
-  }
-}
-function reset() {
-  document.querySelector("#displayBox").textContent = "";
+let displayBox = document.querySelector("#displayBox");
+function clear() {
+  displayBox.textContent = "";
 }
 function handleDotClick(e) {
-  // track the number of times that the dot function is called
-  // allow only 2 dots
-  // num can only have 1 dot
-  // num can't have a dot at the end
   let dot = e.target.textContent;
-  let displayBox = document.querySelector("#displayBox");
-  if (dotTracker < 2) {
-    displayBox.textContent = displayBox.textContent + dot;
-    dotTracker++;
-  } else {
-    null;
-  }
+  displayBox.textContent = displayBox.textContent + dot;
+  // add disable class to my dotButton
+  document.querySelector("#dotButton").classList.toggle("disableButton");
 }
 
 function handleNumClick(e) {
@@ -41,24 +27,22 @@ function handleNumClick(e) {
   let userNum = e.target.textContent;
   let displayNumber = document.querySelector("#displayBox");
   if (calcTracker === 1) {
-    reset();
+    clear();
     calcTracker--;
   }
   // if calculator on do something
-  if (onTracker === 1) {
-    if (displayNumber.textContent === "0") {
-      displayNumber.textContent = userNum;
-    } else if (displayNumber.textContent.length >= 1) {
-      displayNumber.textContent = displayNumber.textContent + userNum;
-    } else {
-      displayNumber.textContent = userNum;
-    }
-    // if off then buttons won't work, "null"
+
+  if (displayNumber.textContent === "0") {
+    displayNumber.textContent = userNum;
+  } else if (displayNumber.textContent.length >= 1) {
+    displayNumber.textContent = displayNumber.textContent + userNum;
   } else {
-    null;
+    displayNumber.textContent = userNum;
   }
+  // if off then buttons won't work, "null"
 }
 function handleOperationClick(e) {
+  document.querySelector("#dotButton").classList.toggle("disableButton");
   let operation = e.target.textContent;
   displayOperation = document.querySelector("#displayBox");
   // ++ is a no, there has to be content first, no 2 ++ inside string
@@ -77,6 +61,7 @@ function handleOperationClick(e) {
   }
 }
 function handleCalc() {
+  document.querySelector("#dotButton").classList.toggle("disableButton");
   let string = document.querySelector("#displayBox").textContent;
   let arr = string.split(" ");
   let operation = arr[1];
@@ -103,7 +88,7 @@ function handleCalc() {
   calcTracker++;
   dotTracker = 0;
 }
-document.querySelector("#onButton").addEventListener("click", handleToggle);
+document.querySelector("#resetButton").addEventListener("click", clear);
 document.querySelector("#calcButton").addEventListener("click", handleCalc);
 document.querySelector("#dotButton").addEventListener("click", handleDotClick);
 let numbers = document.querySelectorAll(".number");
