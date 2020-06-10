@@ -120,6 +120,9 @@ body {
 .disableButton {
   pointer-events: none;
 }
+.onButton{
+  pointer-events:auto;
+}
 #dotButton {
   background-color: lightgray;
   color: black;
