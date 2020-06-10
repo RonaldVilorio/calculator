@@ -12,22 +12,24 @@ let dotTracker = 0;
 // 0 has not clicked calculate
 // 1 has clicked calculate
 let displayBox = document.querySelector("#displayBox");
-let dotButton = document.querySelector("#dotButton");
 function clear() {
-  dotButton.classList.remove("disableButton");
+  document.querySelector("#dotButton").classList.remove("disableButton");
   displayBox.textContent = "";
 }
 function handleDotClick(e) {
   // still contains multiple dots in screen if toggle between =
   // if dot exitsts already don't add more dots
-  dotButton.classList.toggle("disableButton");
+
   let dot = e.target.textContent;
-  if (displayBox.textContent.indexOf(".") - 1 === ".") {
-    null;
+  let lastInput = displayBox.textContent[displayBox.textContent.length - 1];
+  if (lastInput === ".") {
+    return null;
   } else {
     displayBox.textContent = displayBox.textContent + dot;
   }
+
   // add disable class to my dotButton
+  document.querySelector("#dotButton").classList.toggle("disableButton");
 }
 
 function handleNumClick(e) {
@@ -49,7 +51,7 @@ function handleNumClick(e) {
   // if off then buttons won't work, "null"
 }
 function handleOperationClick(e) {
-  dotButton.classList.toggle("disableButton");
+  document.querySelector("#dotButton").classList.toggle("disableButton");
   let operation = e.target.textContent;
 
   // ++ is a no, there has to be content first, no 2 ++ inside string
@@ -67,7 +69,7 @@ function handleOperationClick(e) {
   }
 }
 function handleCalc() {
-  dotButton.classList.toggle("disableButton");
+  document.querySelector("#dotButton").classList.toggle("disableButton");
 
   let arr = displayBox.textContent.split(" ");
   let operation = arr[1];
