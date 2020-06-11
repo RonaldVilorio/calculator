@@ -1,9 +1,6 @@
 let calcTracker = 0;
 let dotTracker = 0;
-// To add commas
-// (1234567.89).toLocaleString('en')
-// add a backspace button or clear button
-// take away dottracker
+
 // refactor code
 // can still add number after = button
 
@@ -12,49 +9,67 @@ let dotTracker = 0;
 // 0 has not clicked calculate
 // 1 has clicked calculate
 let displayBox = document.querySelector("#displayBox");
+let dotButton = document.querySelector("#dotButton");
 function clear() {
-  document.querySelector("#dotButton").classList.remove("disableButton");
+  dotButton.classList.remove("disableButton");
   displayBox.textContent = "";
+  calcTracker = 0;
 }
 function handleDotClick(e) {
-  // still contains multiple dots in screen if toggle between =
-  // if dot exitsts already don't add more dots
+  // before the dot or after the dot, there has to be a number
 
   let dot = e.target.textContent;
   let lastInput = displayBox.textContent[displayBox.textContent.length - 1];
+
   if (lastInput === ".") {
-    return null;
+    null;
+  } else if (calcTracker === 1) {
+    displayBox.textContent = dot;
+    calcTracker = 0;
   } else {
     displayBox.textContent = displayBox.textContent + dot;
   }
 
   // add disable class to my dotButton
-  document.querySelector("#dotButton").classList.toggle("disableButton");
+  dotButton.classList.toggle("disableButton");
 }
 
 function handleNumClick(e) {
   // check to see if display has numbers already
   let userNum = e.target.textContent;
-  // let displayN = document.querySelector("#displayBox");
-  if (calcTracker === 1) {
-    clear();
-    calcTracker--;
+  // check for operators by *1 if true then don't reset calc
+  // check when starting
+  // two phases
+  // when calculator on or off
+
+  // lastInput for single numbers is looking at the input before and theres nothing there
+  // check the length of the input, if its greater than 2 --> lastInput works
+  // since calcTracker is being set to 0 every time a num is clicked, we will weork
+  // with the 0 if statements
+
+  let lastChar = false;
+  let userInput = displayBox.textContent;
+  if (userInput.length >= 2) {
+    lastChar = displayBox.textContent[displayBox.textContent.length - 2] * 1;
   }
-  // if calculator on do something
-  if (displayBox.textContent === "0") {
-    displayBox.textContent = userNum;
-  } else if (displayBox.textContent.length >= 1) {
+  if (userInput === "") {
     displayBox.textContent = displayBox.textContent + userNum;
-  } else {
-    displayBox.textContent = userNum;
+  } else if (calcTracker === 1) {
+    if (displayBox.textContent === "0" || userInput.length == 1 || lastChar) {
+      console.log("HIIIII");
+      displayBox.textContent = userNum;
+    } else {
+      console.log("bad");
+      displayBox.textContent = displayBox.textContent + userNum;
+    }
+  } else if (calcTracker === 0) {
+    displayBox.textContent = displayBox.textContent + userNum;
   }
-  // if off then buttons won't work, "null"
+  calcTracker = 0;
 }
 function handleOperationClick(e) {
-  document.querySelector("#dotButton").classList.toggle("disableButton");
+  dotButton.classList.toggle("disableButton");
   let operation = e.target.textContent;
-
-  // ++ is a no, there has to be content first, no 2 ++ inside string
   if (
     displayBox.textContent.length >= 1 &&
     displayBox.textContent.indexOf(operation) === -1 &&
@@ -69,30 +84,31 @@ function handleOperationClick(e) {
   }
 }
 function handleCalc() {
-  document.querySelector("#dotButton").classList.toggle("disableButton");
+  calcTracker++;
+  dotButton.classList.toggle("disableButton");
 
   let arr = displayBox.textContent.split(" ");
   let operation = arr[1];
   let num1 = arr[0] * 1;
   let num2 = arr[2] * 1;
-  let newString = "";
+  let solution = 0;
   //   copy and paste the symbol from the console into the if statements
   if (operation === "×") {
-    newString = newString + num1 * num2;
+    solution = solution + num1 * num2;
   } else if (operation === "+") {
-    newString = newString + (num1 + num2);
+    solution = solution + (num1 + num2);
   } else if (operation === "−") {
-    newString = newString + (num1 - num2);
+    solution = solution + (num1 - num2);
   } else {
-    newString = newString + num1 / num2;
+    solution = solution + num1 / num2;
   }
-  // let displayBox = document.querySelector("#displayBox");
-  if (arr.length === 3) {
-    displayBox.textContent = newString;
+  solution = solution.toLocaleString("en");
+  // if user gave me 2 nums and a operator, perform the calculation else don't
+  if (arr.length === 3 && num1 && num2) {
+    displayBox.textContent = solution;
   } else {
     null;
   }
-  calcTracker++;
 }
 document.querySelector("#resetButton").addEventListener("click", clear);
 document.querySelector("#calcButton").addEventListener("click", handleCalc);
