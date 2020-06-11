@@ -17,15 +17,15 @@ function clear() {
 }
 function handleDotClick(e) {
   // before the dot or after the dot, there has to be a number
-
+  // before operator check that side for only . dot
   let dot = e.target.textContent;
   let lastInput = displayBox.textContent[displayBox.textContent.length - 1];
 
   if (lastInput === ".") {
     null;
   } else if (calcTracker === 1) {
-    displayBox.textContent = dot;
-    calcTracker = 0;
+    // displayBox.textContent = dot;
+    // calcTracker = 0;
   } else {
     displayBox.textContent = displayBox.textContent + dot;
   }
@@ -84,10 +84,14 @@ function handleOperationClick(e) {
   }
 }
 function handleCalc() {
+  if (displayBox.textContent === "") {
+    return null;
+  }
   calcTracker++;
   dotButton.classList.toggle("disableButton");
 
   let arr = displayBox.textContent.split(" ");
+
   let operation = arr[1];
   let num1 = arr[0] * 1;
   let num2 = arr[2] * 1;
@@ -104,7 +108,8 @@ function handleCalc() {
   }
   solution = solution.toLocaleString("en");
   // if user gave me 2 nums and a operator, perform the calculation else don't
-  if (arr.length === 3 && num1 && num2) {
+  // 0 evaulates to false and wouldn't execute the if statement
+  if ((arr.length === 3 && num1 && num2) || num1 == 0 || num2 == 0) {
     displayBox.textContent = solution;
   } else {
     null;
@@ -113,6 +118,7 @@ function handleCalc() {
 document.querySelector("#resetButton").addEventListener("click", clear);
 document.querySelector("#calcButton").addEventListener("click", handleCalc);
 document.querySelector("#dotButton").addEventListener("click", handleDotClick);
+
 let numbers = document.querySelectorAll(".number");
 for (number of numbers) {
   number.addEventListener("click", handleNumClick);
