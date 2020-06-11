@@ -10,6 +10,7 @@ let dotTracker = 0;
 // 1 has clicked calculate
 let displayBox = document.querySelector("#displayBox");
 let dotButton = document.querySelector("#dotButton");
+let negButton = document.querySelector("#toggleNeg");
 function clear() {
   dotButton.classList.remove("disableButton");
   displayBox.textContent = "";
@@ -69,6 +70,7 @@ function handleNumClick(e) {
 }
 function handleOperationClick(e) {
   dotButton.classList.toggle("disableButton");
+  negButton.classList.remove("disableButton");
   let operation = e.target.textContent;
   if (
     displayBox.textContent.length >= 1 &&
@@ -115,9 +117,14 @@ function handleCalc() {
     null;
   }
 }
+function toggleNeg() {
+  displayBox.textContent = displayBox.textContent + "-";
+  negButton.classList.toggle("disableButton");
+}
 document.querySelector("#resetButton").addEventListener("click", clear);
 document.querySelector("#calcButton").addEventListener("click", handleCalc);
 document.querySelector("#dotButton").addEventListener("click", handleDotClick);
+document.querySelector("#toggleNeg").addEventListener("click", toggleNeg);
 
 let numbers = document.querySelectorAll(".number");
 for (number of numbers) {
