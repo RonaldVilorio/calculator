@@ -11,10 +11,15 @@ let negTracker = 0;
 let displayBox = document.querySelector("#displayBox");
 let dotButton = document.querySelector("#dotButton");
 let negButton = document.querySelector("#toggleNeg");
+
+// have a container for num1
+// have a container for num2
+
 function clear() {
   dotButton.classList.remove("disableButton");
   displayBox.textContent = "";
   calcTracker = 0;
+  negTracker = 0;
 }
 function handleDotClick(e) {
   // before the dot or after the dot, there has to be a number
@@ -36,17 +41,7 @@ function handleDotClick(e) {
 }
 
 function handleNumClick(e) {
-  // check to see if display has numbers already
   let userNum = e.target.textContent;
-  // check for operators by *1 if true then don't reset calc
-  // check when starting
-  // two phases
-  // when calculator on or off
-
-  // lastInput for single numbers is looking at the input before and theres nothing there
-  // check the length of the input, if its greater than 2 --> lastInput works
-  // since calcTracker is being set to 0 every time a num is clicked, we will weork
-  // with the 0 if statements
 
   let lastChar = false;
   let userInput = displayBox.textContent;
@@ -110,7 +105,7 @@ function handleCalc() {
   }
   solution = solution.toLocaleString("en");
   // if user gave me 2 nums and a operator, perform the calculation else don't
-  // 0 evaulates to false and wouldn't execute the if statement
+  // 0 evaulates to false and wouldn't execute the if statement check for 0
   if ((arr.length === 3 && num1 && num2) || num1 == 0 || num2 == 0) {
     displayBox.textContent = solution;
   } else {
@@ -120,17 +115,44 @@ function handleCalc() {
 function toggleNeg() {
   // should place a minus at the beginng on first click
   //  should remove the minus at the beginning on second click
-
   // should disable after pressing the operator -- on hold
+  // 2 substrings after operator click
+  // or check if string contains an operator, if so do substrings
+  // after substring move on to next string
+  // if(substring1 exists then ignore substr1 and focus on substring2)
+
   let arr = displayBox.textContent.split("");
-  if (negTracker === 0) {
+  let operator = "";
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "×") {
+      operator = operator + arr[i];
+    } else if (arr[i] === "+") {
+      operator = operator + arr[i];
+    } else if (arr[i] === "−") {
+      operator = operator + arr[i];
+    } else if (arr[i] === "÷") {
+      operator = operator + arr[i];
+    }
+  }
+  operator = operator.trim();
+  if (displayBox.textContent.indexOf(operator)) {
+    // add a - right after the operator
+    arr.splice(arr.indexOf(operator) + 2, 0, "-");
+    displayBox.textContent = arr.join("");
+  } else {
     arr.splice(0, 0, "-");
     displayBox.textContent = arr.join("");
     negTracker++;
-  } else {
-    displayBox.textContent = displayBox.textContent.replace("-", "");
-    negTracker = 0;
   }
+
+  // if (negTracker === 0) {
+  //   arr.splice(0, 0, "-");
+  //   displayBox.textContent = arr.join("");
+  //   negTracker++;
+  // } else {
+  //   displayBox.textContent = displayBox.textContent.replace("-", "");
+  //   negTracker = 0;
+  // }
 }
 document.querySelector("#resetButton").addEventListener("click", clear);
 document.querySelector("#calcButton").addEventListener("click", handleCalc);
