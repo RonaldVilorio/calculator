@@ -79,12 +79,14 @@ function handleOperationClick(e) {
   } else {
     null;
   }
+  negTracker = 0;
 }
 function handleCalc() {
   if (displayBox.textContent === "") {
     return null;
   }
   calcTracker++;
+  negTracker = 0;
   dotButton.classList.toggle("disableButton");
 
   let arr = displayBox.textContent.split(" ");
@@ -134,25 +136,37 @@ function toggleNeg() {
       operator = operator + arr[i];
     }
   }
-  operator = operator.trim();
-  if (displayBox.textContent.indexOf(operator)) {
-    // add a - right after the operator
-    arr.splice(arr.indexOf(operator) + 2, 0, "-");
-    displayBox.textContent = arr.join("");
-  } else {
-    arr.splice(0, 0, "-");
-    displayBox.textContent = arr.join("");
-    negTracker++;
-  }
 
-  // if (negTracker === 0) {
+  operator = operator.trim();
+
+  // if (displayBox.textContent.indexOf(operator)) {
+  //   // add a "-"" 2 spaces after the operator
+  //   arr.splice(arr.indexOf(operator) + 2, 0, "-");
+  //   displayBox.textContent = arr.join("");
+  // } else {
   //   arr.splice(0, 0, "-");
   //   displayBox.textContent = arr.join("");
   //   negTracker++;
-  // } else {
-  //   displayBox.textContent = displayBox.textContent.replace("-", "");
-  //   negTracker = 0;
   // }
+
+  if (negTracker === 0 && displayBox.textContent.indexOf(operator)) {
+    arr.splice(arr.indexOf(operator) + 2, 0, "-");
+    displayBox.textContent = arr.join("");
+    negTracker++;
+  } else if (negTracker === 0 && operator === "") {
+    arr.splice(0, 0, "-");
+    displayBox.textContent = arr.join("");
+    negTracker++;
+  } else if (negTracker === 1 && displayBox.textContent.indexOf(operator)) {
+    // remove the - from the second num
+    arr.splice(arr.indexOf(operator) + 2, 1, "");
+    displayBox.textContent = arr.join("");
+    negTracker = 0;
+  } else {
+    // remove the - from the first num
+    displayBox.textContent = displayBox.textContent.replace("-", "");
+    negTracker = 0;
+  }
 }
 document.querySelector("#resetButton").addEventListener("click", clear);
 document.querySelector("#calcButton").addEventListener("click", handleCalc);
