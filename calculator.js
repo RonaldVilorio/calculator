@@ -1,5 +1,5 @@
 let calcTracker = 0;
-let dotTracker = 0;
+let negTracker = 0;
 
 // refactor code
 // can still add number after = button
@@ -118,8 +118,19 @@ function handleCalc() {
   }
 }
 function toggleNeg() {
-  displayBox.textContent = displayBox.textContent + "-";
-  negButton.classList.toggle("disableButton");
+  // should place a minus at the beginng on first click
+  //  should remove the minus at the beginning on second click
+
+  // should disable after pressing the operator -- on hold
+  let arr = displayBox.textContent.split("");
+  if (negTracker === 0) {
+    arr.splice(0, 0, "-");
+    displayBox.textContent = arr.join("");
+    negTracker++;
+  } else {
+    displayBox.textContent = displayBox.textContent.replace("-", "");
+    negTracker = 0;
+  }
 }
 document.querySelector("#resetButton").addEventListener("click", clear);
 document.querySelector("#calcButton").addEventListener("click", handleCalc);
