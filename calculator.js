@@ -24,10 +24,11 @@ function clear() {
 function handleDotClick(e) {
   let dot = ".";
   let lastInput = displayBox.textContent[displayBox.textContent.length - 1];
+  // if (lastInput === "." && calcTracker === 1) {
+  //   null;
+  // } else
 
-  if (lastInput === "." && calcTracker === 1) {
-    null;
-  } else if (calcTracker === 1 && lastInput.length >= 1) {
+  if (calcTracker === 1 && lastInput.length >= 0) {
     displayBox.textContent = ".";
   } else {
     displayBox.textContent = displayBox.textContent + dot;
@@ -44,13 +45,28 @@ function handleNumClick(e) {
   if (displayBox.textContent.length >= 2) {
     lastChar = displayBox.textContent[displayBox.textContent.length - 2] * 1;
   }
-  let userInput = displayBox.textContent;
+  // lastChar does 2 things, checks to see if its a number
+  // checks if it's a non number such as whitespace
+  // if lastChar is number -> replace the num --> if whitespace then add to the userInput
 
+  let userInput = displayBox.textContent;
+  // displayBox.textContent === "0" ||
+  // userInput.length == 1 ||
+  // lastChar === "."
   if (userInput === "") {
     displayBox.textContent = displayBox.textContent + userNum;
   } else if (calcTracker === 1) {
-    if (displayBox.textContent === "0" || userInput.length == 1 || lastChar) {
+    // check for . and add on to it if equals button was pressed
+    if (displayBox.textContent[displayBox.textContent.indexOf(".")] === ".") {
+      displayBox.textContent = displayBox.textContent + userNum;
+      //  reset every char if there's no whitespace
+    } else if (
+      displayBox.textContent.length >= 1 &&
+      displayBox.textContent.indexOf(" ") == -1
+    ) {
+      console.log("Hey");
       displayBox.textContent = userNum;
+      // there is white space then operator is pressed and add on the string
     } else {
       displayBox.textContent = displayBox.textContent + userNum;
     }
@@ -93,11 +109,9 @@ function handleCalc() {
   if (displayBox.textContent === "") {
     return null;
   }
-
-  calcTracker++;
+  calcTracker = 1;
   negTracker = 0;
-
-  dotButton.classList.toggle("disableButton");
+  dotButton.classList.remove("disableButton");
 
   let arr = displayBox.textContent.split(" ");
 
@@ -135,6 +149,7 @@ function toggleNeg() {
 
   let arr = displayBox.textContent.split("");
   let operator = "";
+
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === "×") {
       operator = operator + arr[i];
