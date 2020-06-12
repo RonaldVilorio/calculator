@@ -22,40 +22,36 @@ function clear() {
   negTracker = 0;
 }
 function handleDotClick(e) {
-  // before the dot or after the dot, there has to be a number
-  // before operator check that side for only . dot
-  let dot = e.target.textContent;
+  let dot = ".";
   let lastInput = displayBox.textContent[displayBox.textContent.length - 1];
 
-  if (lastInput === ".") {
+  if (lastInput === "." && calcTracker === 1) {
     null;
-  } else if (calcTracker === 1) {
-    // displayBox.textContent = dot;
-    // calcTracker = 0;
+  } else if (calcTracker === 1 && lastInput.length >= 1) {
+    displayBox.textContent = ".";
   } else {
     displayBox.textContent = displayBox.textContent + dot;
   }
-
-  // add disable class to my dotButton
-  dotButton.classList.toggle("disableButton");
+  // disable the dot button after using it
+  dotButton.classList.add("disableButton");
 }
 
 function handleNumClick(e) {
   let userNum = e.target.textContent;
-
   let lastChar = false;
-  let userInput = displayBox.textContent;
-  if (userInput.length >= 2) {
+  // will check for empty string before ex: 5 + _   <-- messes up this part
+  // on hold will elaborate further
+  if (displayBox.textContent.length >= 2) {
     lastChar = displayBox.textContent[displayBox.textContent.length - 2] * 1;
   }
+  let userInput = displayBox.textContent;
+
   if (userInput === "") {
     displayBox.textContent = displayBox.textContent + userNum;
   } else if (calcTracker === 1) {
     if (displayBox.textContent === "0" || userInput.length == 1 || lastChar) {
-      console.log("HIIIII");
       displayBox.textContent = userNum;
     } else {
-      console.log("bad");
       displayBox.textContent = displayBox.textContent + userNum;
     }
   } else if (calcTracker === 0) {
@@ -63,21 +59,33 @@ function handleNumClick(e) {
   }
   calcTracker = 0;
 }
+
 function handleOperationClick(e) {
-  dotButton.classList.toggle("disableButton");
-  negButton.classList.remove("disableButton");
+  dotButton.classList.remove("disableButton");
   let operation = e.target.textContent;
+
   if (
     displayBox.textContent.length >= 1 &&
-    displayBox.textContent.indexOf(operation) === -1 &&
-    displayBox.textContent.indexOf("×") === -1 &&
-    displayBox.textContent.indexOf("+") === -1 &&
-    displayBox.textContent.indexOf("−") === -1 &&
-    displayBox.textContent.indexOf("÷") === -1
+    (displayBox.textContent.indexOf("×") > -1 ||
+      displayBox.textContent.indexOf("+") > -1 ||
+      displayBox.textContent.indexOf("−") > -1 ||
+      displayBox.textContent.indexOf("÷") > -1)
   ) {
+    let charOp = "";
+    // look for the current text and look for the operator char and store in charOp
+    for (char of displayBox.textContent) {
+      if (!!(char * 1) === false && char !== 0) {
+        charOp = charOp + char;
+      }
+    }
+    // take away surrounding whiteSpace
+    charOp = charOp.trim();
+    // replace the current char op with the new one the use clicked on
+    displayBox.textContent = displayBox.textContent.replace(charOp, operation);
+  } else if (displayBox.textContent.length >= 1) {
+    // set an operator in the text
+    // follow up call of the function will go into the first if statement
     displayBox.textContent = displayBox.textContent + " " + operation + " ";
-  } else {
-    null;
   }
   negTracker = 0;
 }
@@ -85,8 +93,10 @@ function handleCalc() {
   if (displayBox.textContent === "") {
     return null;
   }
+
   calcTracker++;
   negTracker = 0;
+
   dotButton.classList.toggle("disableButton");
 
   let arr = displayBox.textContent.split(" ");
@@ -138,16 +148,6 @@ function toggleNeg() {
   }
 
   operator = operator.trim();
-
-  // if (displayBox.textContent.indexOf(operator)) {
-  //   // add a "-"" 2 spaces after the operator
-  //   arr.splice(arr.indexOf(operator) + 2, 0, "-");
-  //   displayBox.textContent = arr.join("");
-  // } else {
-  //   arr.splice(0, 0, "-");
-  //   displayBox.textContent = arr.join("");
-  //   negTracker++;
-  // }
 
   if (negTracker === 0 && displayBox.textContent.indexOf(operator)) {
     arr.splice(arr.indexOf(operator) + 2, 0, "-");
