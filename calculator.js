@@ -2,7 +2,9 @@ let calcTracker = 0;
 let negTracker = 0;
 
 // refactor code
-// can still add number after = button
+// no trailing dots
+// having trouble on the operation change after calculate is pressed when dealing with 2 digit numbers
+// having trouble with the operation change after pressing . on second num and trying to change operator
 
 // when calc has been pressed
 // calcTracker --> 1
@@ -14,6 +16,22 @@ let negButton = document.querySelector("#toggleNeg");
 
 // have a container for num1
 // have a container for num2
+function findOperator() {
+  let arr = displayBox.textContent.split("");
+  let operator = "";
+  for (char of arr) {
+    if (char === "×") {
+      operator = operator + char;
+    } else if (char === "+") {
+      operator = operator + char;
+    } else if (char === "−") {
+      operator = operator + char;
+    } else if (char === "÷") {
+      operator = operator + char;
+    }
+  }
+  return operator.trim();
+}
 
 function clear() {
   dotButton.classList.remove("disableButton");
@@ -21,14 +39,18 @@ function clear() {
   calcTracker = 0;
   negTracker = 0;
 }
-function handleDotClick(e) {
+function handleDotClick() {
   let dot = ".";
   let lastInput = displayBox.textContent[displayBox.textContent.length - 1];
-  // if (lastInput === "." && calcTracker === 1) {
-  //   null;
-  // } else
-
-  if (calcTracker === 1 && lastInput.length >= 0) {
+  let dotCount = 0;
+  for (char of displayBox.textContent) {
+    if (char === dot) {
+      dotCount++;
+    }
+  }
+  if (lastInput === "." || dotCount > 2) {
+    return null;
+  } else if (calcTracker === 1 && lastInput.length >= 0) {
     displayBox.textContent = ".";
   } else {
     displayBox.textContent = displayBox.textContent + dot;
@@ -138,31 +160,10 @@ function handleCalc() {
     null;
   }
 }
+
 function toggleNeg() {
-  // should place a minus at the beginng on first click
-  //  should remove the minus at the beginning on second click
-  // should disable after pressing the operator -- on hold
-  // 2 substrings after operator click
-  // or check if string contains an operator, if so do substrings
-  // after substring move on to next string
-  // if(substring1 exists then ignore substr1 and focus on substring2)
-
+  let operator = findOperator();
   let arr = displayBox.textContent.split("");
-  let operator = "";
-
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === "×") {
-      operator = operator + arr[i];
-    } else if (arr[i] === "+") {
-      operator = operator + arr[i];
-    } else if (arr[i] === "−") {
-      operator = operator + arr[i];
-    } else if (arr[i] === "÷") {
-      operator = operator + arr[i];
-    }
-  }
-
-  operator = operator.trim();
 
   if (negTracker === 0 && displayBox.textContent.indexOf(operator)) {
     arr.splice(arr.indexOf(operator) + 2, 0, "-");
