@@ -1,10 +1,8 @@
 let calcTracker = 0;
 let negTracker = 0;
-
+// console.log(calcTracker,"global")
 // refactor code
-// no trailing dots
-// having trouble on the operation change after calculate is pressed when dealing with 2 digit numbers
-// having trouble with the operation change after pressing . on second num and trying to change operator
+// track num
 
 // when calc has been pressed
 // calcTracker --> 1
@@ -42,6 +40,7 @@ function clear() {
 function handleDotClick() {
   let dot = ".";
   let lastInput = displayBox.textContent[displayBox.textContent.length - 1];
+
   let dotCount = 0;
   for (char of displayBox.textContent) {
     if (char === dot) {
@@ -61,38 +60,43 @@ function handleDotClick() {
 
 function handleNumClick(e) {
   let userNum = e.target.textContent;
-  let lastChar = false;
+  // let lastChar = false;
   // will check for empty string before ex: 5 + _   <-- messes up this part
   // on hold will elaborate further
-  if (displayBox.textContent.length >= 2) {
-    lastChar = displayBox.textContent[displayBox.textContent.length - 2] * 1;
-  }
+  // if (displayBox.textContent.length >= 2) {
+  //   lastChar = displayBox.textContent[displayBox.textContent.length - 2] * 1;
+  // }
+  // if no operator and click has happened
+  // then replace whats there with the new content
+
   // lastChar does 2 things, checks to see if its a number
   // checks if it's a non number such as whitespace
   // if lastChar is number -> replace the num --> if whitespace then add to the userInput
 
   let userInput = displayBox.textContent;
-  // displayBox.textContent === "0" ||
-  // userInput.length == 1 ||
-  // lastChar === "."
+  let operator;
+  if (calcTracker === 1) {
+    operator = findOperator();
+  }
+  // displayBox.textContent[displayBox.textContent.indexOf(".")] === "."
+  // console.log(calcTracker,"numHandler")
   if (userInput === "") {
     displayBox.textContent = displayBox.textContent + userNum;
   } else if (calcTracker === 1) {
-    // check for . and add on to it if equals button was pressed
-    if (displayBox.textContent[displayBox.textContent.indexOf(".")] === ".") {
-      displayBox.textContent = displayBox.textContent + userNum;
-      //  reset every char if there's no whitespace
-    } else if (
-      displayBox.textContent.length >= 1 &&
-      displayBox.textContent.indexOf(" ") == -1
-    ) {
+    if (operator === "") {
       console.log("Hey");
       displayBox.textContent = userNum;
-      // there is white space then operator is pressed and add on the string
+    }
+    // check for . and add on to it if equals button was pressed
+    else if (displayBox.textContent.indexOf(".") > -1) {
+      console.log("HEllo");
+      displayBox.textContent = displayBox.textContent + userNum;
+      //  reset every char if there's no whitespace
     } else {
       displayBox.textContent = displayBox.textContent + userNum;
     }
   } else if (calcTracker === 0) {
+    console.log("HUHHEUHUE");
     displayBox.textContent = displayBox.textContent + userNum;
   }
   calcTracker = 0;
