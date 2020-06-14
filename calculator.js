@@ -1,19 +1,12 @@
 let calcTracker = 0;
 let negTracker = 0;
-// console.log(calcTracker,"global")
-// refactor code
-// track num
-
-// when calc has been pressed
-// calcTracker --> 1
-// 0 has not clicked calculate
-// 1 has clicked calculate
 let displayBox = document.querySelector("#displayBox");
 let dotButton = document.querySelector("#dotButton");
 let negButton = document.querySelector("#toggleNeg");
+let numbers = document.querySelectorAll(".number");
+let operations = document.querySelectorAll(".operation");
 
-// have a container for num1
-// have a container for num2
+// helper functions
 function findOperator() {
   let arr = displayBox.textContent.split("");
   let operator = "";
@@ -60,26 +53,13 @@ function handleDotClick() {
 
 function handleNumClick(e) {
   let userNum = e.target.textContent;
-  // let lastChar = false;
-  // will check for empty string before ex: 5 + _   <-- messes up this part
-  // on hold will elaborate further
-  // if (displayBox.textContent.length >= 2) {
-  //   lastChar = displayBox.textContent[displayBox.textContent.length - 2] * 1;
-  // }
-  // if no operator and click has happened
-  // then replace whats there with the new content
-
-  // lastChar does 2 things, checks to see if its a number
-  // checks if it's a non number such as whitespace
-  // if lastChar is number -> replace the num --> if whitespace then add to the userInput
-
   let userInput = displayBox.textContent;
   let operator;
+
   if (calcTracker === 1) {
     operator = findOperator();
   }
-  // displayBox.textContent[displayBox.textContent.indexOf(".")] === "."
-  // console.log(calcTracker,"numHandler")
+
   if (userInput === "") {
     displayBox.textContent = displayBox.textContent + userNum;
   } else if (calcTracker === 1) {
@@ -89,7 +69,6 @@ function handleNumClick(e) {
     // check for . and add on to it if equals button was pressed
     else if (displayBox.textContent.indexOf(".") > -1) {
       displayBox.textContent = displayBox.textContent + userNum;
-      //  reset every char if there's no whitespace
     } else {
       displayBox.textContent = displayBox.textContent + userNum;
     }
@@ -101,7 +80,7 @@ function handleNumClick(e) {
 
 function handleOperationClick(e) {
   dotButton.classList.remove("disableButton");
-  let operation = e.target.textContent;
+  let userOperator = e.target.textContent;
 
   if (
     displayBox.textContent.length >= 1 &&
@@ -110,21 +89,17 @@ function handleOperationClick(e) {
       displayBox.textContent.indexOf("−") > -1 ||
       displayBox.textContent.indexOf("÷") > -1)
   ) {
-    let charOp = "";
-    // look for the current text and look for the operator char and store in charOp
-    for (char of displayBox.textContent) {
-      if (!!(char * 1) === false && char !== 0) {
-        charOp = charOp + char;
-      }
-    }
-    // take away surrounding whiteSpace
-    charOp = charOp.trim();
-    // replace the current char op with the new one the use clicked on
-    displayBox.textContent = displayBox.textContent.replace(charOp, operation);
+    let lastOperator;
+    lastOperator = findOperator();
+    // replace the current char op with the new one the user clicked on
+    displayBox.textContent = displayBox.textContent.replace(
+      lastOperator,
+      userOperator
+    );
   } else if (displayBox.textContent.length >= 1) {
     // set an operator in the text
     // follow up call of the function will go into the first if statement
-    displayBox.textContent = displayBox.textContent + " " + operation + " ";
+    displayBox.textContent = displayBox.textContent + " " + userOperator + " ";
   }
   negTracker = 0;
 }
@@ -137,7 +112,6 @@ function handleCalc() {
   dotButton.classList.remove("disableButton");
 
   let arr = displayBox.textContent.split(" ");
-
   let operation = arr[1];
   let num1 = arr[0] * 1;
   let num2 = arr[2] * 1;
@@ -185,17 +159,16 @@ function toggleNeg() {
     negTracker = 0;
   }
 }
+
 document.querySelector("#resetButton").addEventListener("click", clear);
 document.querySelector("#calcButton").addEventListener("click", handleCalc);
 document.querySelector("#dotButton").addEventListener("click", handleDotClick);
 document.querySelector("#toggleNeg").addEventListener("click", toggleNeg);
 
-let numbers = document.querySelectorAll(".number");
 for (number of numbers) {
   number.addEventListener("click", handleNumClick);
 }
 
-let operations = document.querySelectorAll(".operation");
 for (operation of operations) {
   operation.addEventListener("click", handleOperationClick);
 }
