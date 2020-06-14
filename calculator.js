@@ -83,20 +83,17 @@ function handleNumClick(e) {
   if (userInput === "") {
     displayBox.textContent = displayBox.textContent + userNum;
   } else if (calcTracker === 1) {
-    if (operator === "") {
-      console.log("Hey");
+    if (operator === "" && displayBox.textContent[0] != ".") {
       displayBox.textContent = userNum;
     }
     // check for . and add on to it if equals button was pressed
     else if (displayBox.textContent.indexOf(".") > -1) {
-      console.log("HEllo");
       displayBox.textContent = displayBox.textContent + userNum;
       //  reset every char if there's no whitespace
     } else {
       displayBox.textContent = displayBox.textContent + userNum;
     }
   } else if (calcTracker === 0) {
-    console.log("HUHHEUHUE");
     displayBox.textContent = displayBox.textContent + userNum;
   }
   calcTracker = 0;
