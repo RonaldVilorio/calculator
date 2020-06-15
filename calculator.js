@@ -1,5 +1,6 @@
 let calcTracker = 0;
 let negTracker = 0;
+let allButtons = document.querySelectorAll("button");
 let displayBox = document.querySelector("#displayBox");
 let dotButton = document.querySelector("#dotButton");
 let negButton = document.querySelector("#toggleNeg");
@@ -52,15 +53,15 @@ function handleDotClick() {
 }
 
 function handleNumClick(e) {
+  // took away userInput variable, using ternary operator
   let userNum = e.target.textContent;
-  let userInput = displayBox.textContent;
   let operator;
+  // if (calcTracker === 1) {
+  //   operator = findOperator();
+  // }
+  calcTracker === 1 ? (operator = findOperator()) : null;
 
-  if (calcTracker === 1) {
-    operator = findOperator();
-  }
-
-  if (userInput === "") {
+  if (displayBox.textContent === "") {
     displayBox.textContent = displayBox.textContent + userNum;
   } else if (calcTracker === 1) {
     if (operator === "" && displayBox.textContent[0] != ".") {
@@ -164,16 +165,23 @@ function handleDelete() {
     displayBox.textContent = displayBox.textContent.slice(0, -1);
   }
 }
-document.querySelector("#deleteButton").addEventListener("click", handleDelete);
-document.querySelector("#resetButton").addEventListener("click", clear);
-document.querySelector("#calcButton").addEventListener("click", handleCalc);
-document.querySelector("#dotButton").addEventListener("click", handleDotClick);
-document.querySelector("#toggleNeg").addEventListener("click", toggleNeg);
 
-for (number of numbers) {
-  number.addEventListener("click", handleNumClick);
+function addAllEventListeners(buttons) {
+  for (button of buttons) {
+    if (button.className.indexOf("number") > -1) {
+      button.addEventListener("click", handleNumClick);
+    } else if (button.className.indexOf("operation") > -1) {
+      button.addEventListener("click", handleOperationClick);
+    }
+  }
+  document
+    .querySelector("#deleteButton")
+    .addEventListener("click", handleDelete);
+  document.querySelector("#resetButton").addEventListener("click", clear);
+  document.querySelector("#calcButton").addEventListener("click", handleCalc);
+  document
+    .querySelector("#dotButton")
+    .addEventListener("click", handleDotClick);
+  document.querySelector("#toggleNeg").addEventListener("click", toggleNeg);
 }
-
-for (operation of operations) {
-  operation.addEventListener("click", handleOperationClick);
-}
+addAllEventListeners(allButtons);
