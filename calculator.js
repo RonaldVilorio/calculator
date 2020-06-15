@@ -104,9 +104,6 @@ function handleOperationClick(e) {
   negTracker = 0;
 }
 function handleCalc() {
-  if (displayBox.textContent === "") {
-    return null;
-  }
   calcTracker = 1;
   negTracker = 0;
   dotButton.classList.remove("disableButton");
@@ -130,10 +127,10 @@ function handleCalc() {
   solution = solution.toLocaleString("en");
   // if user gave me 2 nums and a operator, perform the calculation else don't
   // 0 evaulates to false and wouldn't execute the if statement check for 0
-  if ((arr.length === 3 && num1 && num2) || num1 == 0 || num2 == 0) {
-    displayBox.textContent = solution;
-  } else {
+  if (displayBox.textContent === "") {
     null;
+  } else if ((arr.length === 3 && num1 && num2) || num1 == 0 || num2 == 0) {
+    displayBox.textContent = solution;
   }
 }
 
