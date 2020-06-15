@@ -1,3 +1,12 @@
+
+// What can be improved (future features)
+// What was challenging and how did you overcome it?
+// How fluent are you speaking about your own code?
+// What resources were helpful for you?
+
+// for git, added readme file
+// added styleButton class to reset and del buttons
+//
 let calcTracker = 0;
 let negTracker = 0;
 let allButtons = document.querySelectorAll("button");
@@ -56,9 +65,6 @@ function handleNumClick(e) {
   // took away userInput variable, using ternary operator
   let userNum = e.target.textContent;
   let operator;
-  // if (calcTracker === 1) {
-  //   operator = findOperator();
-  // }
   calcTracker === 1 ? (operator = findOperator()) : null;
 
   if (displayBox.textContent === "") {

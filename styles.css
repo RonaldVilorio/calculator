@@ -33,7 +33,7 @@ body {
   display: flex;
   justify-content: flex-start;
 }
-.turnOnDiv {
+.spacer {
   background-color: rgb(50, 43, 76);
   width: 80%;
   height: 40px;
@@ -41,31 +41,10 @@ body {
   justify-content: flex-end;
 }
 #resetButton {
-  margin-top: 4px;
-  border-radius: 10%;
-  background-color: lightgray;
-  color: black;
-  width: auto;
-  height: auto;
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  /* border: 2px solid black; */
+  font-size: 25px;
 }
-#deleteButton{
-  margin-top: 4px;
-  border-radius: 10%;
-  background-color: lightgray;
-  color: black;
-  width: auto;
-  height: auto;
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+#deleteButton {
+  font-size: 25px;
 }
 #resetButton:hover {
   background-color: white;
@@ -99,15 +78,7 @@ body {
   flex-wrap: wrap;
   justify-content: space-evenly;
   border: 2px solid black;
-}
-.operatorColumn {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  border: 2px solid black;
+  opacity: 80%;
 }
 .styleButtons {
   background-color: lightgray;
@@ -122,16 +93,6 @@ body {
   align-items: center;
   justify-content: center;
 }
-/* .number {
-  background-color: lightgray;
-} */
-
-/* #calcButton {
-  background-color: lightgray;
-}
-#toggleNeg {
-  background-color: lightgray;
-} */
 #toggleNeg:hover {
   background-color: white;
 }
