@@ -1,13 +1,7 @@
-
 // What can be improved (future features)
 // What was challenging and how did you overcome it?
 // How fluent are you speaking about your own code?
 // What resources were helpful for you?
-
-// white -> idle
-// red -> pressing number
-// green -> solution has been reached
-// change the border of whole calculator and the border of the display
 
 let calcTracker = 0;
 let negTracker = 0;
@@ -30,6 +24,8 @@ function findOperator() {
     } else if (char === "−") {
       operator = operator + char;
     } else if (char === "÷") {
+      operator = operator + char;
+    } else if (char === "%") {
       operator = operator + char;
     }
   }
@@ -92,11 +88,12 @@ function handleOperationClick(e) {
   let userOperator = e.target.textContent;
 
   if (
-    displayBox.textContent.length >= 1 &&
-    (displayBox.textContent.indexOf("×") > -1 ||
-      displayBox.textContent.indexOf("+") > -1 ||
-      displayBox.textContent.indexOf("−") > -1 ||
-      displayBox.textContent.indexOf("÷") > -1)
+    (displayBox.textContent.length >= 1 &&
+      (displayBox.textContent.indexOf("×") > -1 ||
+        displayBox.textContent.indexOf("+") > -1 ||
+        displayBox.textContent.indexOf("−") > -1 ||
+        displayBox.textContent.indexOf("÷") > -1)) ||
+    displayBox.textContent.indexOf("%") > -1
   ) {
     let lastOperator;
     lastOperator = findOperator();
@@ -129,7 +126,8 @@ function handleCalc() {
     solution = solution + (num1 + num2);
   } else if (operation === "−") {
     solution = solution + (num1 - num2);
-    console.log(solution);
+  } else if (operation === "%") {
+    solution = solution + (num1 % num2);
   } else {
     solution = solution + num1 / num2;
   }
