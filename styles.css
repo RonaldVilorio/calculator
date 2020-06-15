@@ -15,15 +15,25 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 10%;
   border: 1px solid white;
 }
+.numbersandOperations{
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 .displayScreen {
-  background-color: rgb(101, 196, 228);
+  background-color: rgb(26, 28, 30);
   width: 80%;
-  height: 50%;
+  min-height: 200px;
   margin-top: 20px;
-  border: 5px solid black;
+  border-bottom: 2px solid white;
+  border-top: 2px solid white;
   border-radius: 10%;
   overflow: hidden;
   display: flex;
@@ -31,68 +41,34 @@ body {
 #displayBox {
   font-size: 50px;
   margin-left: 10px;
+  color: white;
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
 }
-/* .spacer {
-  background-color: rgb(50, 43, 76);
-  width: 80%;
-  height: 40px;
-  display: flex;
-  justify-content: flex-end;
-} */
+
 #resetButton {
-  font-size: 25px;
+  font-size: 50px;
 }
 #deleteButton {
-  font-size: 25px;
+  font-size: 50px;
 }
 #resetButton:hover {
   background-color: white;
   /* color: white; */
   cursor: pointer;
 }
-.numbersandOperations {
-  background-color:rgb(26, 28, 30);
-  width: 80%;
-  height: auto;
-  margin-top: 10px;
-  margin-bottom: 25px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-/* .allButtonsContainer {
-  background-color: rgb(40, 35, 35);
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-} */
-.numbersColumn {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  border: 2px solid black;
-}
 
 .styleButtons {
   background-color: rgb(57, 58, 64);
   color: black;
   width: 20%;
-  height: auto;
-  margin: 10px;
-  border-radius: 25%;
+  height: 100%;
   font-size: 50px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  margin: 5px;
+  /* flex: 1 0 21%; */
 }
 #toggleNeg:hover {
   background-color: white;
@@ -103,9 +79,6 @@ body {
 
 .onButton {
   pointer-events: auto;
-}
-#dotButton {
-  background-color: lightgray;
 }
 #dotButton:hover {
   background-color: white;

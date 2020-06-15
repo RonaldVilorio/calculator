@@ -4,6 +4,11 @@
 // How fluent are you speaking about your own code?
 // What resources were helpful for you?
 
+// white -> idle
+// red -> pressing number
+// green -> solution has been reached
+// change the border of whole calculator and the border of the display
+
 let calcTracker = 0;
 let negTracker = 0;
 let allButtons = document.querySelectorAll("button");
