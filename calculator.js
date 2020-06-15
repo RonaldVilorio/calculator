@@ -116,6 +116,7 @@ function handleCalc() {
   let num1 = arr[0] * 1;
   let num2 = arr[2] * 1;
   let solution = 0;
+  console.log(arr)
   //   copy and paste the symbol from the console into the if statements
   if (operation === "×") {
     solution = solution + num1 * num2;
@@ -123,6 +124,7 @@ function handleCalc() {
     solution = solution + (num1 + num2);
   } else if (operation === "−") {
     solution = solution + (num1 - num2);
+    console.log(solution)
   } else {
     solution = solution + num1 / num2;
   }
