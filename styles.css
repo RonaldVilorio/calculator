@@ -54,6 +54,19 @@ body {
   align-items: center;
   /* border: 2px solid black; */
 }
+#deleteButton{
+  margin-top: 4px;
+  border-radius: 10%;
+  background-color: lightgray;
+  color: black;
+  width: auto;
+  height: auto;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 #resetButton:hover {
   background-color: white;
   /* color: white; */
@@ -109,16 +122,16 @@ body {
   align-items: center;
   justify-content: center;
 }
-.number {
+/* .number {
   background-color: lightgray;
-}
+} */
 
-#calcButton {
+/* #calcButton {
   background-color: lightgray;
 }
 #toggleNeg {
   background-color: lightgray;
-}
+} */
 #toggleNeg:hover {
   background-color: white;
 }

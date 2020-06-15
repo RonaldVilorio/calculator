@@ -160,7 +160,14 @@ function toggleNeg() {
     negTracker = 0;
   }
 }
-
+function handleDelete() {
+  if (displayBox.textContent[displayBox.textContent.length - 1] === " ") {
+    displayBox.textContent = displayBox.textContent.slice(0, -2);
+  } else {
+    displayBox.textContent = displayBox.textContent.slice(0, -1);
+  }
+}
+document.querySelector("#deleteButton").addEventListener("click", handleDelete);
 document.querySelector("#resetButton").addEventListener("click", clear);
 document.querySelector("#calcButton").addEventListener("click", handleCalc);
 document.querySelector("#dotButton").addEventListener("click", handleDotClick);
