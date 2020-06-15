@@ -4,9 +4,6 @@
 // How fluent are you speaking about your own code?
 // What resources were helpful for you?
 
-// for git, added readme file
-// added styleButton class to reset and del buttons
-//
 let calcTracker = 0;
 let negTracker = 0;
 let allButtons = document.querySelectorAll("button");
