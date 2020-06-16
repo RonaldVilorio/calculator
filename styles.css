@@ -29,11 +29,11 @@ body {
   width: 80%;
   min-height: 200px;
   margin-top: 20px;
-  border-bottom: 2px solid rgb(251, 148, 56);
-  border-top: 2px solid rgb(251, 148, 56);
-  border-radius: 10%;
+  border-bottom: 3px solid rgb(251, 148, 56);
+  border-radius: 5%;
   overflow: hidden;
   display: flex;
+  flex-direction: row-reverse;
 }
 #displayBox {
   font-size: 50px;
@@ -41,11 +41,10 @@ body {
   color: rgb(251, 148, 56);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 #resetButton:hover {
-  background-color: white;
-  /* color: white; */
+  background-color: rgb(26, 28, 30);
   cursor: pointer;
 }
 .styleButtons {
@@ -60,7 +59,7 @@ body {
   /* flex: 1 0 21%; */
 }
 #toggleNeg:hover {
-  background-color: white;
+  background-color: rgb(26, 28, 30);
 }
 .disableButton {
   pointer-events: none;
@@ -70,16 +69,19 @@ body {
   pointer-events: auto;
 }
 #dotButton:hover {
-  background-color: white;
+  background-color: rgb(26, 28, 30);
 }
 #calcButton:hover {
-  background-color: white;
+  background-color: rgb(26, 28, 30);
 }
 .operation {
   background-color:rgb(251, 148, 56);
   color: rgb(57, 58, 64);
 }
+.operation:hover{
+  color: rgb(251, 148, 56);
+}
 button:hover {
-  background-color: white;
+  background-color: rgb(26, 28, 30);
   cursor: pointer;
 }
