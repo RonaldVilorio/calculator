@@ -1,6 +1,5 @@
 body {
   background-image: url(./assets/wood.jpg);
-  /* background-repeat: no-repeat; */
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -15,7 +14,7 @@ body {
   align-items: center;
   border: 1px solid rgb(251, 148, 56);
 }
-.numbersandOperations{
+.numbersandOperations {
   margin-top: 10px;
   width: 100%;
   height: auto;
@@ -43,10 +42,6 @@ body {
   align-items: center;
   justify-content: flex-end;
 }
-#resetButton:hover {
-  background-color: rgb(26, 28, 30);
-  cursor: pointer;
-}
 .styleButtons {
   background-color: rgb(57, 58, 64);
   color: rgb(251, 148, 56);
@@ -56,32 +51,62 @@ body {
   display: flex;
   justify-content: center;
   margin: 5px;
-  /* flex: 1 0 21%; */
+}
+#deleteButton {
+  background-color: rgb(251, 148, 56);
+  color:rgb(26, 28, 30)
+}
+#deleteButton:hover{
+  background-color:rgb(26, 28, 30);
+  color:rgb(251, 148, 56);
+}
+
+#resetButton {
+  background-color: rgb(251, 148, 56);
+  color:rgb(26, 28, 30)
+}
+#resetButton:hover {
+  background-color: rgb(26, 28, 30);
+  color: rgb(251, 148, 56);;
+  cursor: pointer;
+}
+#toggleNeg{
+  background-color: rgb(251, 148, 56);
+  color:rgb(26, 28, 30)
 }
 #toggleNeg:hover {
   background-color: rgb(26, 28, 30);
+  color: rgb(251, 148, 56)
 }
 .disableButton {
   pointer-events: none;
 }
-
-.onButton {
-  pointer-events: auto;
+#dotButton{
+  background-color: rgb(251, 148, 56);
+  color:rgb(26, 28, 30)
 }
 #dotButton:hover {
   background-color: rgb(26, 28, 30);
+  color: rgb(251, 148, 56);
 }
-#calcButton:hover {
-  background-color: rgb(26, 28, 30);
-}
-.operation {
+#calcButton{
   background-color:rgb(251, 148, 56);
   color: rgb(57, 58, 64);
 }
-.operation:hover{
+#calcButton:hover {
+  background-color: rgb(26, 28, 30);
+  color:rgb(251, 148, 56)
+}
+.operation {
+  background-color: rgb(251, 148, 56);
+  color: rgb(57, 58, 64);
+}
+.operation:hover {
   color: rgb(251, 148, 56);
 }
 button:hover {
   background-color: rgb(26, 28, 30);
   cursor: pointer;
+  border-bottom: none;
+  border-right: none;
 }
