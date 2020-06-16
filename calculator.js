@@ -3,6 +3,9 @@
 // How fluent are you speaking about your own code?
 // What resources were helpful for you?
 
+// cut out trailing zero in num2
+// cut out commas when redoing math ex: 8,756 - 5667
+
 let calcTracker = 0;
 let negTracker = 0;
 let allButtons = document.querySelectorAll("button");
@@ -31,6 +34,25 @@ function findOperator() {
   }
   return operator.trim();
 }
+function hasOperator() {
+  return (
+    displayBox.textContent.indexOf("×") > -1 ||
+    displayBox.textContent.indexOf("+") > -1 ||
+    displayBox.textContent.indexOf("−") > -1 ||
+    displayBox.textContent.indexOf("÷") > -1 ||
+    displayBox.textContent.indexOf("%") > -1
+  );
+}
+function removeCommas(strNum) {
+  let newString = "";
+  for (let char of strNum) {
+    if (char !== ",") {
+      newString = newString + char;
+    }
+  }
+  return newString;
+}
+// ------->
 
 function clear() {
   dotButton.classList.remove("disableButton");
@@ -40,17 +62,16 @@ function clear() {
 }
 function handleDotClick() {
   let dot = ".";
-  let lastInput = displayBox.textContent[displayBox.textContent.length - 1];
-
   let dotCount = 0;
   for (char of displayBox.textContent) {
     if (char === dot) {
       dotCount++;
     }
   }
-  if (lastInput === "." || dotCount > 2) {
+  if (dotCount >= 2) {
     return null;
-  } else if (calcTracker === 1 && lastInput.length >= 0) {
+    // if a dot is clicked right after equals button, will replace previous solution with .
+  } else if (calcTracker === 1) {
     displayBox.textContent = ".";
   } else {
     displayBox.textContent = displayBox.textContent + dot;
@@ -60,24 +81,18 @@ function handleDotClick() {
 }
 
 function handleNumClick(e) {
-  // took away userInput variable, using ternary operator
   let userNum = e.target.textContent;
   let operator;
   calcTracker === 1 ? (operator = findOperator()) : null;
 
-  if (displayBox.textContent === "") {
-    displayBox.textContent = displayBox.textContent + userNum;
-  } else if (calcTracker === 1) {
+  if (calcTracker === 1) {
     if (operator === "" && displayBox.textContent[0] != ".") {
       displayBox.textContent = userNum;
-    }
-    // check for . and add on to it if equals button was pressed
-    else if (displayBox.textContent.indexOf(".") > -1) {
-      displayBox.textContent = displayBox.textContent + userNum;
     } else {
       displayBox.textContent = displayBox.textContent + userNum;
     }
-  } else if (calcTracker === 0) {
+    // else calcTracker === 0
+  } else {
     displayBox.textContent = displayBox.textContent + userNum;
   }
   calcTracker = 0;
@@ -87,16 +102,8 @@ function handleOperationClick(e) {
   dotButton.classList.remove("disableButton");
   let userOperator = e.target.textContent;
 
-  if (
-    (displayBox.textContent.length >= 1 &&
-      (displayBox.textContent.indexOf("×") > -1 ||
-        displayBox.textContent.indexOf("+") > -1 ||
-        displayBox.textContent.indexOf("−") > -1 ||
-        displayBox.textContent.indexOf("÷") > -1)) ||
-    displayBox.textContent.indexOf("%") > -1
-  ) {
-    let lastOperator;
-    lastOperator = findOperator();
+  if (hasOperator()) {
+    let lastOperator = findOperator();
     // replace the current char op with the new one the user clicked on
     displayBox.textContent = displayBox.textContent.replace(
       lastOperator,
@@ -109,17 +116,22 @@ function handleOperationClick(e) {
   }
   negTracker = 0;
 }
+
 function handleCalc() {
   calcTracker = 1;
   negTracker = 0;
   dotButton.classList.remove("disableButton");
 
   let arr = displayBox.textContent.split(" ");
+  let num1;
+  if (arr[0].indexOf(",") > -1) {
+    num1 = removeCommas(arr[0]) * 1;
+  } else {
+    num1 = arr[0] * 1;
+  }
   let operation = arr[1];
-  let num1 = arr[0] * 1;
   let num2 = arr[2] * 1;
   let solution = 0;
-  //   copy and paste the symbol from the console into the if statements
   if (operation === "×") {
     solution = solution + num1 * num2;
   } else if (operation === "+") {
@@ -140,7 +152,6 @@ function handleCalc() {
     displayBox.textContent = solution;
   }
 }
-
 function toggleNeg() {
   let operator = findOperator();
   let arr = displayBox.textContent.split("");
