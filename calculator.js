@@ -74,10 +74,10 @@ function handleDotClick() {
       dotCount++;
     }
   }
-  if (dotCount >= 2 || lastChar == ".") {
+  if (dotCount >= 2 || lastChar === ".") {
     return null;
     // if a dot is clicked right after equals button, will replace previous solution with .
-  } else if (calcTracker === 1) {
+  } else if (calcTracker === 1 && displayBox.textContent.length >=1) {
     displayBox.textContent = ".";
   } else {
     displayBox.textContent = displayBox.textContent + dot;
@@ -135,10 +135,14 @@ function handleCalc() {
   } else {
     num1 = arr[0] * 1;
   }
-  
-  
+  let num2 = arr[2]*1
+  // check for trailing . at the end, if so then slice off str not including the .
+  // if(num2[num2.length-1] === "."){
+  //   num2 = num2.slice(0,-1)
+  // }
+  // num2 = num2*1
+  // console.log(num2)
   let operation = arr[1];
-  let num2 = arr[2] * 1;
   let solution = 0;
   if (operation === "×") {
     solution = solution + num1 * num2;
