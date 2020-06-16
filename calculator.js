@@ -136,12 +136,6 @@ function handleCalc() {
     num1 = arr[0] * 1;
   }
   let num2 = arr[2]*1
-  // check for trailing . at the end, if so then slice off str not including the .
-  // if(num2[num2.length-1] === "."){
-  //   num2 = num2.slice(0,-1)
-  // }
-  // num2 = num2*1
-  // console.log(num2)
   let operation = arr[1];
   let solution = 0;
   if (operation === "×") {
