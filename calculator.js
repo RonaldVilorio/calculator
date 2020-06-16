@@ -63,12 +63,18 @@ function clear() {
 function handleDotClick() {
   let dot = ".";
   let dotCount = 0;
+  // will check to see if last char is a dot, we can't have .. when user presses an operator
+  let lastChar;
+  if(hasOperator()){
+    lastChar = displayBox.textContent[displayBox.textContent.length-1]
+  }
+  
   for (char of displayBox.textContent) {
     if (char === dot) {
       dotCount++;
     }
   }
-  if (dotCount >= 2) {
+  if (dotCount >= 2 || lastChar == ".") {
     return null;
     // if a dot is clicked right after equals button, will replace previous solution with .
   } else if (calcTracker === 1) {
@@ -129,6 +135,8 @@ function handleCalc() {
   } else {
     num1 = arr[0] * 1;
   }
+  
+  
   let operation = arr[1];
   let num2 = arr[2] * 1;
   let solution = 0;
