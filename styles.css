@@ -12,7 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid rgb(251, 148, 56);
+  box-shadow: -10px 15px 15px black;
 }
 .numbersandOperations {
   margin-top: 10px;
