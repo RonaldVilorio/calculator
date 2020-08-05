@@ -1,9 +1,4 @@
-// What can be improved (future features)
-// What was challenging and how did you overcome it?
-// How fluent are you speaking about your own code?
-// What resources were helpful for you?
 
-// cut out trailing zero in num2
 // cut out commas when redoing math ex: 8,756 - 5667
 
 let calcTracker = 0;
@@ -208,3 +203,12 @@ function addAllEventListeners(buttons) {
   document.querySelector("#toggleNeg").addEventListener("click", toggleNeg);
 }
 addAllEventListeners(allButtons);
+
+
+
+
+
+
+
+// 1. Focus on your Audience's Needs
+// 3. Keep it Simple: Concentrate on your Core Message

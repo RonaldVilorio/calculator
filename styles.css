@@ -46,56 +46,57 @@ body {
   background-color: rgb(57, 58, 64);
   color: rgb(251, 148, 56);
   width: 20%;
-  height: 100%;
-  font-size: 50px;
+  height: 50px;
+  font-size: 35px;
   display: flex;
+  align-items: center;
   justify-content: center;
   margin: 5px;
 }
 #deleteButton {
   background-color: rgb(251, 148, 56);
-  color:rgb(26, 28, 30)
+  color: rgb(26, 28, 30);
 }
-#deleteButton:hover{
-  background-color:rgb(26, 28, 30);
-  color:rgb(251, 148, 56);
+#deleteButton:hover {
+  background-color: rgb(26, 28, 30);
+  color: rgb(251, 148, 56);
 }
 
 #resetButton {
   background-color: rgb(251, 148, 56);
-  color:rgb(26, 28, 30)
+  color: rgb(26, 28, 30);
 }
 #resetButton:hover {
   background-color: rgb(26, 28, 30);
-  color: rgb(251, 148, 56);;
+  color: rgb(251, 148, 56);
   cursor: pointer;
 }
-#toggleNeg{
+#toggleNeg {
   background-color: rgb(251, 148, 56);
-  color:rgb(26, 28, 30)
+  color: rgb(26, 28, 30);
 }
 #toggleNeg:hover {
   background-color: rgb(26, 28, 30);
-  color: rgb(251, 148, 56)
+  color: rgb(251, 148, 56);
 }
 .disableButton {
   pointer-events: none;
 }
-#dotButton{
+#dotButton {
   background-color: rgb(251, 148, 56);
-  color:rgb(26, 28, 30)
+  color: rgb(26, 28, 30);
 }
 #dotButton:hover {
   background-color: rgb(26, 28, 30);
   color: rgb(251, 148, 56);
 }
-#calcButton{
-  background-color:rgb(251, 148, 56);
+#calcButton {
+  background-color: rgb(251, 148, 56);
   color: rgb(57, 58, 64);
 }
 #calcButton:hover {
   background-color: rgb(26, 28, 30);
-  color:rgb(251, 148, 56)
+  color: rgb(251, 148, 56);
 }
 .operation {
   background-color: rgb(251, 148, 56);
